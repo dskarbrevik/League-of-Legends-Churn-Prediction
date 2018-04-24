@@ -8,10 +8,10 @@ If I can predict which players are going to give up on the game before reaching 
 
 **So that's my goal: predict, from the performance of a player's first match, if they are going to make it to level 3 or not.**
 
-## Part 1: <a href"https://github.com/dskarbrevik/Riot_Churn_Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb">Data Collection</a>
+## Part 1: <a href="https://github.com/dskarbrevik/Riot_Churn_Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb">Data Collection</a>
 
 As stated above, I used the Cassiopeia Python library to access Riot's API. Unfortunately, I did not see any easy way to get summoner ids for new (low level) players. So my strategy was to make a new account, play one of the "tutorial" bot matches, and use the match history from my human teammates to branch out and build a list of new player ids.
 
-## Part 2: <a href"https://github.com/dskarbrevik/Riot_Churn_Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%202%20-%20Modeling%5D.ipynb">Data Modeling</a>
+## Part 2: <a href="https://github.com/dskarbrevik/Riot_Churn_Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%202%20-%20Modeling%5D.ipynb">Data Modeling</a>
 
 [In progress]
