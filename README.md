@@ -16,4 +16,4 @@ As stated above, I used the Cassiopeia Python library to access Riot's API. Unfo
 
 ## Part 2: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/Riot_Churn_Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%202%20-%20Data%20Cleaning%20and%20Modeling%5D.ipynb">Data Cleaning and Modeling</a>
 
-Here I do basic data manipulation to prepare the dataset for basic ML models (remove duplicate rows, OHE categorical variables, etc.). I then use a few simple models (logistic regression, random forests) getting an accuracy score of around 74%. Lastly, I train a simple neural network on the dataset (still in progress!). 
+Here I do basic data manipulation to prepare the dataset for basic ML models (remove duplicate rows, OHE categorical variables, etc.). I then use a few simple models like logistic regressionand  random forests and find an accuracy score of around 74%. Lastly, I train a simple neural network on the dataset (still in progress!). 
