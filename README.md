@@ -1,6 +1,6 @@
 # Riot Churn Prediction
 
-Two part project to model prediction of "churn" in new players. Uses <a href="https://developer.riotgames.com/">Riot's API</a> as data source and the <a href="http://cassiopeia.readthedocs.io">Cassiopeia</a> library to access that API.
+Two part project to model prediction of "churn" (not exactly churn) in new players. Uses <a href="https://developer.riotgames.com/">Riot's API</a> as data source and the <a href="http://cassiopeia.readthedocs.io">Cassiopeia</a> library to access that API.
 
 More specifically, Riot's League of Legends (while free to play) requires you reach "level 3" as a player before facing human opponents (the real meat of the game). There may be a wide variety of reasons why a new player would stop playing before reaching level 3 (e.g. smurf account, doesn't see appeal of game, frustrated by game's learning curve, etc.). However there is no obvious label for things like smurf/not-smurf and such so I'm starting with a naive view that most players that don't get to level 3 just got bored/fed-up with the game for one reason or another. 
 
