@@ -10,10 +10,10 @@ If I can predict which players are going to give up on the game before reaching 
 
 Or put more simply... "will this player get past the bot matches".
 
-## Part 1: <a href="https://github.com/dskarbrevik/Riot_Churn_Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb">Data Collection</a>
+## Part 1: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/Riot_Churn_Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb">Data Collection</a>
 
 As stated above, I used the Cassiopeia Python library to access Riot's API. Unfortunately, I did not see any easy way to get summoner ids for new (low level) players. So my strategy was to make a new account, play one of the "tutorial" bot matches, and use the match history from my human teammates to branch out and build a list of new player ids.
 
-## Part 2: <a href="https://github.com/dskarbrevik/Riot_Churn_Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%202%20-%20Modeling%5D.ipynb">Data Cleaning and Modeling</a>
+## Part 2: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/Riot_Churn_Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%202%20-%20Data%20Cleaning%20and%20Modeling%5D.ipynb">Data Cleaning and Modeling</a>
 
 Here I do basic data manipulation to prepare the dataset for basic ML models (remove duplicate rows, OHE categorical variables, etc.). I then use a few simple models (logistic regression, random forests) getting an accuracy score of around 74%. Lastly, I train a simple neural network on the dataset (still in progress!). 
