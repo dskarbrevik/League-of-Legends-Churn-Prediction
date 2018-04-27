@@ -6,9 +6,9 @@ More specifically, Riot's League of Legends (while free to play) requires you re
 
 If I can predict which players are going to give up on the game before reaching level 3 based on their performance in their first match, it may be worth incentivizing that player in some way before they give up (either encouraging them to play again or providing some additional game info where they seem to be weakest).
 
-**So that's my goal: predict, from the performance of a player's first match, if that player is going to make it to level 3.**
+**So that's my goal: predict, from the performance of a player's first match, if that player is going to make it to level 3.** Or put more simply... "will this player get past the bot matches".
 
-Or put more simply... "will this player get past the bot matches".
+(click the titles below to see notebooks)
 
 ## Part 1: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/Riot_Churn_Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb">Data Collection</a>
 
