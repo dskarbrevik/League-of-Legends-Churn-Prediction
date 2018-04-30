@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+
+{% seo %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  </head>
+
+  <body>
+
+    <!-- Header section of the website -->
+    <section class="page-header">
+      <h1 class="project-name"><bold>FoodHUD</bold></h1>
+      <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
+      {% if site.github.is_project_page %}
+        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+      {% endif %}
+      {% if site.show_downloads %}
+        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
+        <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
+      {% endif %}
+    </section>
+
+    <!-- This adds a sidebar menu for easy jumping around
+    <div class="w3-sidebar w3-bar-block" style="width:225px;" id="mySidebar">
+      <h3 class="w3-bar-item">Menu</h3>
+      <a href="#topic1" class="w3-bar-item w3-button">What is FoodHUD?</a>
+      <a href="#topic2" class="w3-bar-item w3-button">Background Motivation</a>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button">How We Made FoodHUD <i class="fa fa-caret-down"></i></button>
+        <div class="w3-dropdown-content w3-bar-block">
+            <a href="#topic3_1" class="w3-bar-item w3-button">Image Data</a>
+            <a href="#topic3_2" class="w3-bar-item w3-button">Nutritional Data</a>
+            <a href="#topic3_3" class="w3-bar-item w3-button">Modeling</a>
+            <a href="#topic3_4" class="w3-bar-item w3-button">Web Application</a>
+        </div>
+      </div>
+      <a href="#topic4" class="w3-bar-item w3-button">Resources</a>
+    </div>
+    -->
+
+
+    <!-- Side bar that can open and close
+    <div class="w3-sidebar w3-border-right w3-bar-block w3-animate-left" style="display:none" id="mySidebar">
+      <button class="w3-bar-item w3-button w3-large"
+      onclick="w3_close()">Close &times;</button> -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#topic1">What is FoodHUD?</a>
+      <a href="#topic2">Background motivation</a>
+      <a href="#topic3">How we made FoodHUD</a>
+      <a href="#topic4">Resources</a>
+    </div>
+
+    <!-- Use any element to open the sidenav
+    <button class="openNav" onclick="openNav()">&#9776;</button> -->
+
+    <!-- Large banner below hero image -->
+
+
+    <button onclick="openNav()">&#9776;</button>
+
+
+    <div id="main">
+
+    <!-- Main text of site is here -->
+    <section class="main-content">
+
+      <h2 id="topic1"> What is FoodHUD? </h2>
+      <p>FoodHUD, the Food Heads-Up Display, is an easy-to-use web application where a user uploads an image of food and then receives the name of the food along with an estimate of the caloric content of the food for every 100 grams of it. We call this the "Caloric Density" of the food.</p>
+
+      <h2 id="topic2"> Background motivation </h2>
+
+      <p>Millions of Americans struggle with their weight and its effects on their physical health.
+        Portion control can be a serious challenge for busy people,
+        and often it is difficult for someone to estimate the caloric content of a given meal.
+        While a human would often fail at the task,
+        a well-trained machine may not. </p>
+
+      <img src="obesity.jpg">
+
+      <p>Recent advances in computer vision, driven by developments in deep learning,
+        have enabled computers to successfully distinguish thousands of classes of images of items with impressive accuracy.
+        Researchers have already developed image classification data sets comprised of images of food.</p>
+      <p>One such data set, Food101, contains 101 classes of food with 1000 high-resolution images for each class.
+        Several well-established baselines exist for Food101, including relatively performant deep learning solutions.
+        This provides a proof of concept that the automated identification of food is within our grasp,
+        and these solutions may provide a path forward for Americans seeking to reign in their caloric intake.</p>
+
+      <h2 id="topic3"> How we made FoodHUD </h2>
+
+      <p>Inspired by the progress made on the Food101 data set,
+        we set out to implement an automated tool to estimate the caloric content of a plate of food based on an image.
+        We believe that such a product, available as a web-based application or preferably a mobile application,
+        could bolster a consumer’s ability to control their diet and be more health- and nutrition-conscious. </p>
+
+      <p>We developed our solution in multiple parallel stages.
+        We knew that we needed to acquire not only labelled image data of foods,
+        but also coinciding nutritional data on those same foods.
+        We have already discussed Food101 as a data source,
+        but we explored additional options to augment this source with more images.
+        Knowing that we would need to integrate caloric data at a minimum,
+        we search for and evaluated a few different sources of nutritional information.
+        We chose to update the neural network architecture to reflect our augmented data set.
+        Finally, we needed to create an application to leverage our deep learning model and perform class identification and use a lookup table to derive calorie prediction.</p>
+
+      <h3 id="topic3_1"> Image Set Augmentation </h3>
+      <p>Although the existing Food101 dataset offered a laudable 1000 images per class,
+        we suspected that we would benefit from an augmented data set (e.g. more images, more classes).
+        To that end, we explored a few additional data sources,
+        including pre-compiled data sets and public image sites.
+        Namely, we considered integrating data from the UEC data set,
+        which could have supplied more images and additional classes for us.
+        However, these classes seemed skewed toward Japanese cuisine,
+        which would have been less beneficial for a typical American dieter.</p>
+      <p>We also attempted to scrape images from Google Images, Instagram, and Flickr.
+        We found a useful Chrome extension for Google Images, but the functionality had bugs and daily throughput was limited.
+        Instagram's API was incredibly limited as it required direct approval from Instagram before use and approval was limited to applications with purposes other than data collection.
+        Flickr's API was the overall best option for automated food image collection. It allowed for the automated collection of thousands of images based on keyword search.
+        The searches led to relatively high-quality results. Searching for "apple pie" resulting in a very large ratio of valid apple pie images (roughly 90% were valid by eye).
+        We had hoped to retrain a CNN on a larger image set obtained this way, however time constraints made it impossible.
+        It is also unclear if the invalid images (roughly 10% of the data) would destroy any gains to be had from the increased data volume.</p>
+      <p>We also considered automated data augmentation of our existing image set, through cropping and reflections.
+        This would allow us to expand our image set from the existing Food101 data set without worrying about data quality and accuracy.
+        We found source code that augmented an image set, but we opted not use it due to time constraints. Their implementation would have
+        required more RAM than our systems had, and we could not spare the time to implement our own.</p>
+
+      <h3 id="topic3_2"> Nutritional Information Acquisition </h3>
+      <p>Because we wanted to predict calorie data about a food, we needed a reliable and open resource for nutritional information.
+        Initially, we sought to use MyFitnessPal as a data source. It seemed reliable enough,
+        and all of the Food101 categories had at least one relevant entry in its nutritional database.
+        However, due to MyFitnessPal’s policy against automated collection of data, we chose to collect it by hand,
+        which was cumbersome. Because of this, we only took one data point for each category,
+        which resulted in quite a few categories that had anomalous calorie values.
+        These anomalies, as well as the fact that MyFitnessPal is not a truly open resource,
+        led us to discard MyFitnessPal as a data source.</p>
+      <p>Fortunately, we found a reasonable public data source in the USDA National Nutrient Database for Standard Reference.
+        This provides nutrient data about nearly 9000 foods, many of which overlap with the food categories in Food101.
+        Using the caloric information from this data source and a handy set of regular expressions, we were able to compute
+        the median caloric density (kcal/100g) for 53 of the original 101 food categories in Food101.
+        These calorie values seem valid and will allow us to integrate nutritional data into our application.</p>
+
+
+
+      <p>The distributions seem to suggest that MyFitnessPal's "per serving" calorie values and USDA's "per 100 grams" calorie values are similar. However there are a couple of issues.</p>
+
+      <p>First, here we see that there are some issues with the calorie values for foods in MyFitnessPal:</p>
+      <img src="mfp_hist.png">
+
+      <p>Compared to the relatively stable distribution found from USDA:</p>
+      <img src="usda_hist.png">
+
+      <p>Second, we fail to see a linear relationship between "per serving" and "caloric density" in the data plotted here:</p>
+      <img src="calorie_comparison_new.png" style="width:auto;height:500px;">
+
+
+
+      <h3 id="topic3_3"> Modeling </h3>
+      <h4> Classification Modeling </h4>
+      <p> InceptionV3 ImageNet CNN retrained on Food101 images. </p>
+
+      <p> Here is a high level view of the InceptionV3 CNN model architecture:</p>
+
+        <img src="inceptionV3_architecture.png">
+
+      <p>See resouces <a href="#resouce_4">[4]</a> <a href="#resouce6">[6]</a> for more information.</p>
+
+      <h4> Regression Modeling </h4>
+      <p>
+      Our final architecture used classification and then looked up the median caloric density based on the class.
+        However, we were also interested in determining the performance of the model when attempting to use linear regression to predict the caloric density directly.
+        We ran an experiment with a subset of 1000 of the Food101 images,
+        filtering down to those images belonging to the 53 classes for which we had caloric densities.
+        Then, resizing the images, we collected features for each image from the Keras application for the VGG16 network trained on ImageNet.
+        We then fed these features into a PCA with a number of principal components varying from 1 to 100 and used a 5-fold cross-validation to compute a mean squared error.
+        We used a much simpler model as our baseline, whose only input features were the sums across all pixels of each of the three color channels.
+        This three-feature model performed comparably with models trained on the PCA transformation of the extracted image features.
+      </p>
+
+        <img src="cheesecake_regress.png">
+        <img src="macaron_regress.png">
+
+        <p>
+        Additional models were also tested, including a "dummy", which only guessed the mean caloric density of the training data, and a random forest.
+        Neither the linear regression nor the random forest significantly outperformed the dummy.
+        These results together suggest that direct regression of caloric density is not a reasonable option for models trained on this subset of Food101.
+        </p>
+
+        <img src="model_comparison.png">
+
+      <h3 id="topic3_4"> Web-Based Application </h3>
+      <p>Using Python's Flask library and Google's Cloud services, we established a web application capable of serving Keras model predictions based on user provided content.
+      A demo can be found <a href="https://foodhud-project.appspot.com/">here</a> (not currently working!).
+      The user uploads an image and after it is processed,
+      both a food category and nutritional information is displayed with the image.
+      </p>
+      
+      <p>Here is an example of that workflow:</p>
+      
+      <img src="webapp_test.png">
+      
+      
+      <h2 id="topic4"> Resources </h2>
+      <ol>
+          <li id=resouce_1>
+              <a href="https://www.niddk.nih.gov/health-information/health-statistics/overweight-obesity">
+                  NIDDK Statistics on obesity
+              </a>
+          </li>
+          <li id=resouce_2>
+              <a href="https://www.myfitnesspal.com/">
+                  MyFitnessPal
+              </a>
+          </li>
+          <li id=resouce_3>
+              <a href="https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/usda-national-nutrient-database-for-standard-reference/">
+                  USDA Standard Reference
+              </a>
+          </li>
+          <li id=resouce_4>
+              <a href="https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html">
+                  Keras retraining imagenet models
+              </a>
+          </li>
+          <li id=resource_5>
+              <a href="https://www.vision.ee.ethz.ch/datasets_extra/food-101/">
+                  Food101 original paper
+              </a>
+          </li>
+          <li id=resource_6>
+              <a href="https://github.com/stratospark/food-101-keras">
+                  Keras Food101 baseline CNN model
+              </a>
+          </li>
+          <li id=resouce_7>
+              <a href="https://arxiv.org/ftp/arxiv/papers/1606/1606.05675.pdf">
+                  Previous work on Deep-Learning Food Image Recognition
+              </a>
+          </li>
+      </ol>
+      <!-- use this if you want to use README.md as main html page text instead
+      {{ content }}
+      -->
+
+      <!-- Footer section of site here -->
+      <footer class="site-footer">
+        {% if site.github.is_project_page %}
+        <span class="site-footer-owner"> UC, Berkeley MIDS Fall 2017 </span>
+          <!-- <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>-->
+        {% endif %}
+        <!--<span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>-->
+      </footer>
+    </section>
+    </div>
+
+    <!-- Trying to get menu button to stay still... might not need this
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementByClassName("openNav")[0].style.display = "block";
+    }
+    -->
+
+    <script>
+      /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+      function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+      function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").style.marginLeft = "0";
+      }
+    </script>
+    {% if site.google_analytics %}
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', '{{ site.google_analytics }}', 'auto');
+        ga('send', 'pageview');
+      </script>
+    {% endif %}
+  </body>
+</html>
