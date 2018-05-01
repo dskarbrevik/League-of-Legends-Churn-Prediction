@@ -19,5 +19,6 @@ _(to see the code step by step, click the title of whichever part you're interes
 ### Part 3: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%203%20-%20Data%20Modeling%5D.ipynb"> Data Modeling </a>
 
 <br>
+<br>
 
 **Special thanks**  to Riot for providing the <a href="https://developer.riotgames.com/">API</a> that was used as my data source and to the authors of <a href="http://cassiopeia.readthedocs.io">Cassiopeia</a> for providing a convenient way to access the Riot API through Python.
