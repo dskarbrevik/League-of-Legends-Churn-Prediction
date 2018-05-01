@@ -1,1 +1,9 @@
 theme: jekyll-theme-cayman
+
+defaults:
+
+  -
+    scope:
+      path: ""
+    values:
+      page.title: "LoL Churn"
