@@ -21,16 +21,16 @@ $header-bg-color-secondary: #252423 !default;
 }
 
 .btn{
-    opacity: 0.9;
+    opacity: 1;
 
 }
 
-.teal{
-  width:100%;
-  height:100px;
-  position: sticky; top: 25px;
-  background: #252423;
-}
+// .teal{
+//   width:100%;
+//   height:100px;
+//   position: sticky; top: 25px;
+//   background: #252423;
+// }
 
 
 button {
@@ -56,6 +56,7 @@ button {
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.3s; /* 0.3 second transition effect to slide in the sidenav */
+    white-space: nowrap;
 }
 
 /* The navigation menu links */
