@@ -6,4 +6,4 @@ defaults:
     scope:
       path: ""
     values:
-      title: "LoL Churn"
+      title: "LoL Churn Predictor"
