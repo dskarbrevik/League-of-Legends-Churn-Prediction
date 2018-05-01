@@ -4,8 +4,6 @@ New League of Legends players start as level 1 "summoners" and can only play mat
 
 **My goal:** based on the performance of a player's first match, is that player going to make it to level 3 or give up on the game before then?
 
-This project uses <a href="https://developer.riotgames.com/">Riot's API</a> as data source and the <a href="http://cassiopeia.readthedocs.io">Cassiopeia</a> library to access that API.
-
 ### To learn more click <a href="https://dskarbrevik.github.io/League-of-Legends-Churn-Prediction/">here</a>
 
 To see the code step by step, click the title of whichever part you're interested in:
@@ -15,3 +13,5 @@ To see the code step by step, click the title of whichever part you're intereste
 ### Part 2: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%202%20-%20Data%20Cleaning%20and%20EDA%5D.ipynb">Data Cleaning and EDA</a>
 
 ### Part 3: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%203%20-%20Data%20Modeling%5D.ipynb"> Data Modeling </a>
+
+This project uses <a href="https://developer.riotgames.com/">Riot's API</a> as its data source and the <a href="http://cassiopeia.readthedocs.io">Cassiopeia</a> library to access that API.
