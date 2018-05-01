@@ -1,21 +1,24 @@
 # League of Legends Churn Prediction
 
-Two part project to model prediction of "churn" (not exactly churn) in new players of Riot's League of Legends game. 
+New League of Legends players start as level 1 "summoners" and can only play matches against computers. Once a player becomes a level 3 summoner (about 3-4 matches) they can play against other humans (the real meat of the game).
 
-This project uses <a href="https://developer.riotgames.com/">Riot's API</a> as data source and the <a href="http://cassiopeia.readthedocs.io">Cassiopeia</a> library to access that API.
+### Project goal: 
 
-League of Legends (while free to play) requires you reach "level 3" as a player before facing human opponents (the real meat of the game). There may be a wide variety of reasons why a new player would stop playing before reaching level 3 (e.g. smurf account, doesn't see appeal of game, frustrated by game's learning curve, etc.). However there is no obvious label for things like smurf/not-smurf and such so I'm starting with a naive view that most players that don't get to level 3 just got bored/fed-up with the game for one reason or another. 
+Based on the performance of a player's first match, is that player going to make it to level 3 or give up on the game before then?
 
-If I can predict which players are going to give up on the game before reaching level 3 based on their performance in their first match, it may be worth incentivizing that player in some way before they give up (either encouraging them to play again or providing some additional game info where they seem to be weakest).
+### To learn more click <a href="https://dskarbrevik.github.io/League-of-Legends-Churn-Prediction/">here</a>
 
-**So that's my goal: predict, from the performance of a player's first match, if that player is going to make it to level 3.** Or put more simply... "will this player get past the bot matches".
+<br>
 
-(click the titles below to see notebooks)
+_(to see the code step by step, click the title of whichever part you're interested in)_
 
-## Part 1: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb">Data Collection</a>
+### Part 1: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb">Data Collection</a>
 
-As stated above, I used the Cassiopeia Python library to access Riot's API. Unfortunately, I did not see any easy way to get summoner ids for new (low level) players. So my strategy was to make a new account, play one of the "tutorial" bot matches, and use the match history from my human teammates to branch out and build a list of new player ids.
+### Part 2: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%202%20-%20Data%20Cleaning%20and%20EDA%5D.ipynb">Data Cleaning and EDA</a>
 
-## Part 2: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/Riot%20Churn%20Predictor%20%5BPart%202%20-%20Data%20Cleaning%20and%20Modeling%5D.ipynb">Data Cleaning and Modeling</a>
+### Part 3: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%203%20-%20Data%20Modeling%5D.ipynb"> Data Modeling </a>
 
-Here I do basic data manipulation to prepare the dataset for basic ML models (remove duplicate rows, OHE categorical variables, etc.). I then use a few simple models like logistic regressionand  random forests and find an accuracy score of around 74%. Lastly, I train a simple neural network on the dataset (still in progress!). 
+<br>
+<br>
+
+**Special thanks**  to Riot for providing the <a href="https://developer.riotgames.com/">API</a> that was used as my data source and to the authors of <a href="http://cassiopeia.readthedocs.io">Cassiopeia</a> for providing a convenient way to access the Riot API through Python.
