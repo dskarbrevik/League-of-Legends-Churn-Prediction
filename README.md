@@ -3,9 +3,12 @@
 New League of Legends players start as level 1 "summoners" and can only play matches against computers. Once a player becomes a level 3 summoner (about 3-4 matches) they can play against other humans (the real meat of the game).
 
 ### My goal: 
-based on the performance of a player's first match, is that player going to make it to level 3 or give up on the game before then?
+
+Based on the performance of a player's first match, is that player going to make it to level 3 or give up on the game before then?
 
 ### To learn more click <a href="https://dskarbrevik.github.io/League-of-Legends-Churn-Prediction/">here</a>
+
+<br>
 
 _(to see the code step by step, click the title of whichever part you're interested in)_
 
