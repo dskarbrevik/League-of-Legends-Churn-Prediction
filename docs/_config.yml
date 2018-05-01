@@ -6,4 +6,4 @@ defaults:
     scope:
       path: ""
     values:
-      page.title: "LoL Churn"
+      title: "LoL Churn"
