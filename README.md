@@ -20,4 +20,4 @@ _(to see the code step by step, click the title of whichever part you're interes
 
 <br>
 
-**Special thanks:** This project uses <a href="https://developer.riotgames.com/">Riot's API</a> as its data source and the <a href="http://cassiopeia.readthedocs.io">Cassiopeia</a> library to access that API.
+**Special thanks**  to Riot for providing the <a href="https://developer.riotgames.com/">API</a> that was used as my data source and to the authors of the <a href="http://cassiopeia.readthedocs.io">Cassiopeia</a> Python library for providing a convenient way to access the API through Python.
