@@ -1,8 +1,12 @@
 # League of Legends Churn Prediction
 
-Three part project to model prediction of "churn" (not exactly churn) in new players of Riot's League of Legends game. 
+This is a three part project to model prediction of "churn" in new players of Riot's League of Legends game. 
 
-More specifically: based on the performance of a player's first match, is that player going to make it to level 3.
+New League of Legends players start as level 1 "summoners" and can only play matches against computers. Once a player becomes a level 3 summoner (about 3-4 matches) they can play against other humans (the real meat of the game).
+
+Thus the churn I am concerned with is specifically in new players.
+
+**My goal:** based on the performance of a player's first match, is that player going to make it to level 3.
 
 This project uses <a href="https://developer.riotgames.com/">Riot's API</a> as data source and the <a href="http://cassiopeia.readthedocs.io">Cassiopeia</a> library to access that API.
 
