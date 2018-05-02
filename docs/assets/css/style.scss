@@ -33,6 +33,15 @@ $section-headings-color: #252423 !default;
 //   background: #252423;
 // }
 
+table{
+  border: 5px;
+}
+
+td{
+    text-align:center;
+    vertical-align:middle;
+}
+
 
 button {
     width: 8%;
