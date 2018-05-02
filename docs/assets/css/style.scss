@@ -1,10 +1,19 @@
 ---
 ---
 
+$header-heading-color: #fff !default;
+$header-bg-color: #252423 !default;
+$header-bg-color-secondary: #252423 !default;
+
 @import "{{ site.theme }}";
 
 .page-header{
-    background-image: url("../../banner2_higher_res.jpg");
+    background-image: url("../../lol3.jpg");
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    display: inline-block;
 }
 
 .project-tagline{
@@ -12,16 +21,16 @@
 }
 
 .btn{
-    opacity: 0.9;
+    opacity: 1;
 
 }
 
-.teal{
-  width:100%;
-  height:100px;
-  position: sticky; top: 25px;
-  background:#009688;
-}
+// .teal{
+//   width:100%;
+//   height:100px;
+//   position: sticky; top: 25px;
+//   background: #252423;
+// }
 
 
 button {
@@ -30,7 +39,7 @@ button {
     position: sticky; top: 35px;
     height: auto;
     border: none;
-    background-color: #009688;
+    background-color: #252423; /* Black*/
     font-size: 40px;
     color:#ffffff;
 }
@@ -43,15 +52,16 @@ button {
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #111; /* Black*/
+    background-color: #252423; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    transition: 0.3s; /* 0.3 second transition effect to slide in the sidenav */
+    white-space: nowrap;
 }
 
 /* The navigation menu links */
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 8px 32px 16px 32px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
@@ -74,10 +84,10 @@ button {
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-    transition: margin-left .5s;
-    padding: 20px;
-}
+ #main {
+     transition: margin-left .5s;
+     padding: 2px;
+ }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
