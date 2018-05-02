@@ -58,37 +58,92 @@
     <section class="main-content">
 
       <h2 id="topic1"> What is LoL Churn Predictor? </h2>
-      <p> New League of Legends players begin as a level 1 "summoner".
-        They must play enough matches against computers to become a level 3 summoner (roughly 3-4 matches) before they can play against other humans.
-        League of Legends matches are often 15-30 minutes each, making the investment to become a level 3 summoner significant for a new player.
-        <br>
-        <br>
-        <b>Given gameplay data from the first match of a new League of Legends player, this project seeks to
-          predict whether that player will get to level 3 within one month of their first match.</b>
-      </p>
+
+        <p> New League of Legends players begin as a level 1 "summoner".
+          They must play enough matches against computers to become a level 3 summoner (roughly 3-4 matches) before they can play against other humans.
+          League of Legends matches are often 15-30 minutes each, making the investment to become a level 3 summoner significant for a new player.
+          <br>
+          <br>
+          <b>Given gameplay data from the first match of a new League of Legends player, this project seeks to
+            predict whether that player will get to level 3 within one month of their first match.</b>
+        </p>
 
       <h2 id="topic2"> Background motivation </h2>
-      <p> Churn rate is often defined as the number of customers/players/users that have stopped using a product/service for a specific period of time (perhaps a month).
-        Generally, churn rate considers the entire customer base (not just new or old customers). However, for a product like a video game, the first few experiences may have large
-        <br>
-        <br>
-      There are some acceptable reasons why a customer would leave a product/service, perhaps the customer has happily fulfilled their needs with the product and it was a natural time
-      for them to stop using the product. However, many other reasons might be avoidable, for example, in a game like League of Legends, a player may stop playing the game due to frustration
-      with non-intuitive controls or game mechanisms. Maybe even just a small encouragement could completely change that player's outlook on those first few experiences with the game.
-        <br>
-        <br>
-      With that in mind, this churn predictor project seeks to identify these actionable targets.
-      </p>
+
+        <p> Churn rate is often defined as the number of customers/players/users that have stopped using a product/service for a specific period of time (perhaps a month).
+          Generally, churn rate considers the entire customer base (not just new or old customers). However, for a product like a video game, the first few moments have a profound
+          can cause someone to never play the game again or it can plant the seed of a superfan that has great loyalty and interest in everything about the game.
+          <br>
+          <br>
+          There are some acceptable reasons why a customer would leave a product/service, perhaps the customer has happily fulfilled their needs with the product and it was a natural time
+          for them to stop using the product. However, many other reasons might be avoidable, for example, in a game like League of Legends, a player may stop playing the game due to frustration
+          with non-intuitive controls or game mechanics. Maybe even just a small encouragement could completely change that player's outlook on those first few experiences with the game.
+          <br>
+          <br>
+          With that in mind, this churn predictor project seeks to identify these players that may give up on the game before giving it a proper chance to impress them.
+        </p>
 
 
       <h2 id="topic3"> Data Collection </h2>
 
-      <p> This project gathers data from Riot's API<sup><a href="#resource_1">[1]</a></sup></p>
+        <p> This project gathers data from Riot's API <sup><a href="#resource_1">[1]</a></sup>
+          using the Cassiopeia <sup><a href="#resource_2">[2]</a></sup> python library.
+          <br>
+          <br>
+          The API gives access to basic data about a player as well as their match history
+          and in-game data from each match. Note, the API spans three years from the current date,
+          so any data older than three years is not accessible.
+        </p>
+          <br>
+          <br>
+
+        <p> Here is an example of some basic information you can get from a player: </p>
+
+          <table>
+            <tr>
+              <th>Summoner name</th>
+              <th>Summoner id</th>
+              <th>Summoner level</th>
+              <th>Region (server)</th>
+              <th>Number of matches<br>(in last three years)</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>Msendak</td>
+              <td>37709821</td>
+              <td>52</td>
+              <td>North America</td>
+              <td>2806</td>
+            </tr>
+          </table>
+
+        <p> And here is some data from this player's most recent match: </p>
+
+          <!-- <table>
+            <tr>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+          </table> -->
+
 
       <h2 id="topic4"> Exploratory Data Analysis </h2>
 
-        <img src="summoner_level_high_res.png">
+        <p>
 
+        </p>
+
+        <p> All players in the dataset are within levels one to five:</p>
+          <img src="summoner_level_high_res.png">
+
+        <p> Notice how the distribution is skewed toward players that are levels four and five.
+          This is another artifact of the way data was collected and does not necessarily mean
+          that more LoL players are levels four and five than one through three.
+        </p>
 
       <h2 id="topic5"> Churn Prediction Modeling </h2>
 
@@ -98,12 +153,12 @@
 
       <h2 id="topic6"> Resources </h2>
       <ol>
-          <li id=resouce_1>
+          <li id="resource_1">
               <a href="https://developer.riotgames.com/">
                   Riot API
               </a>
           </li>
-          <li id=resouce_2>
+          <li id="resource_2">
               <a href="https://cassiopeia.readthedocs.io/en/latest/">
                   Cassiopeia (Python library)
               </a>
