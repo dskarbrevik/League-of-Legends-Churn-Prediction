@@ -7,6 +7,7 @@ $header-bg-color-secondary: #252423 !default;
 
 @import "{{ site.theme }}";
 
+<<<<<<< HEAD
 .page-header{
     background-image: url("../../lol3.jpg");
     background-repeat: no-repeat;
@@ -15,6 +16,11 @@ $header-bg-color-secondary: #252423 !default;
     object-fit: contain;
     display: inline-block;
 }
+=======
+// .page-header{
+//     background-image: url("../../lol.png");
+// }
+>>>>>>> parent of 48f5eb9... update
 
 .project-tagline{
     opacity: 1;
