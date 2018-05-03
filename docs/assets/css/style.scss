@@ -5,6 +5,7 @@ $header-heading-color: #fff !default;
 $header-bg-color: #252423 !default;
 $header-bg-color-secondary: #252423 !default;
 $section-headings-color: #252423 !default;
+$table-border-color: #252423 !default;
 
 @import "{{ site.theme }}";
 
@@ -33,18 +34,17 @@ $section-headings-color: #252423 !default;
 //   background: #252423;
 // }
 
-td,th{
-  border: 5px solid black;
+th, td{
+  border: 5px solid;
 }
 
 td{
-    text-align:center;
-    vertical-align:middle;
+    text-align: center;
+    vertical-align: middle;
 }
 
-
 button {
-    width: 8%;
+    width: 5%;
     vertical-align: middle;
     position: sticky; top: 35px;
     height: auto;
