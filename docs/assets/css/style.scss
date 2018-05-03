@@ -2,7 +2,7 @@
 ---
 
 $header-heading-color: #fff !default;
-$header-bg-color: #252423 !default;
+$header-bg-color: #252423 !default;w
 $header-bg-color-secondary: #252423 !default;
 $section-headings-color: #252423 !default;
 $table-border-color: #252423 !default;
@@ -27,6 +27,12 @@ $table-border-color: #252423 !default;
 .btn{
     opacity: 2;
 
+}
+
+#bar{
+  height: 5px;
+  width: 100%;
+  background-color: #252423;
 }
 
 // .teal{
