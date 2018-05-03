@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <div id="bar"></div>
+
     <!-- Header section of the website -->
     <section class="page-header">
       <h1 class="project-name"><bold>League of Legends Churn Predictor</bold></h1>
@@ -26,8 +26,6 @@
         <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
       {% endif %}
     </section>
-
-    <div id="bar"></div>
 
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -43,7 +41,7 @@
       <hr>
       <a href="#topic5">Resources</a>
     </div>
-    <div id="bar"></div>
+
     <!-- Use any element to open the sidenav
     <button class="openNav" onclick="openNav()">&#9776;</button> -->
 
@@ -54,13 +52,13 @@
 
 
     <div id="main">
-
+      <div class="bar"></div>
     <!-- Main text of site is here -->
     <section class="main-content">
+      <div class="bar"></div>
+      <h2 id="topic1"> What is League of Legends Churn Predictor? </h2>
 
-      <h2 id="topic1"> What is LoL Churn Predictor? </h2>
-
-        <p> New League of Legends players begin as a level 1 "summoner".
+        <p> New League of Legends (LoL) players begin as a level 1 "summoner".
           They must play enough matches against computers to become a level 3 summoner (roughly 3-4 matches) before they can play against other humans.
           League of Legends matches are often 15-30 minutes each, making the investment to become a level 3 summoner significant for a new player.
           <br>
@@ -96,8 +94,7 @@
           so any data older than three years is not accessible.
         </p>
           <br>
-        <p> Here is an example of some basic information you can get from a player: </p>
-
+        <b><p> Here is an example of some basic information you can get from a player: </p></b>
           <table>
             <tr>
               <th>Summoner name</th>
@@ -115,8 +112,7 @@
             </tr>
           </table>
           <br>
-        <p> Here are some data points from this player's most recent match: </p>
-
+        <b><p> Here are some data points from this player's most recent match: </p></b>
           <table>
             <thead>
               <tr>
