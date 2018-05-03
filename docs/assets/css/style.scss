@@ -12,6 +12,8 @@ $table-border-color: #252423 !default;
 .page-header{
     background-image: url("../../league.jpg");
     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     height: 100%;
     width: 100%;
     object-fit: contain;
