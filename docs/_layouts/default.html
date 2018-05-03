@@ -144,7 +144,24 @@
           </table>
 
         <p> These are just a few statistics, in total we have over 100 data points for each new player's first match.
-
+          <br>
+          <br>
+          <h3>The big challenge</h3>
+          There is just one complication in getting this data. You need a player's name or id in order to get their match data.
+          The API does not provide any way to obtain random player names. The only player names you can obtain are those in the
+          Challenger and Master leagues (the highest ranking competitive players... the dead opposite of new players).
+          <br>
+          <br>
+          But there's hope! The API tells you the names of other players that were in a given game.
+          Most commonly a game has 10 players (or 5 for new players: 5 humans vs. 5 computers).
+          So if I know one player that played 10 games, that's theoretically 90 new players I have access to
+          (if that one player never played with the same players twice).
+          <br>
+          <br>
+          Because Riot's matchmaking system tends to place people of similar levels in the same game, I created a new account
+          and played my first match on that account. This gave me four other low level players to potentially add to my dataset.
+          I then looked at their match histories to find low level players that <i>they</i> played with. I continued this iterative,
+          branching process until I finally had a dataset of over 1,000 players and the stats from each of those player's first match.
         </p>
 
       <h2 id="topic4"> Exploratory Data Analysis </h2>
