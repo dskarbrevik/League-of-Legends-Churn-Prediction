@@ -185,17 +185,20 @@
           I made when collecting the data, but seeing this, it may be worth trimming off players that began playing before
           May as this could add noise or overfitting for our model. However I am choosing to leave these players in the dataset.
           <br>
+          <br>
           Because this project revolves larger around the idea of a player's summoner level,
           let's get a better idea of what that looks like in my dataset.
 
           <img src="summoner_level_high_res.png">
-
+          <br>
           Notice how the distribution is skewed toward players that are levels four and five.
           This is another artifact of the way data was collected and does not necessarily mean
           that more LoL players are levels four and five than one through three.
           <br>
+          <br>
           Now that we have some idea of how the dataset looks in general, let's handpick a few features that I predict will
           be important in differentiating players that give up on LoL before reaching level 3.
+          <br>
           <br>
           <table>
             <thead>
@@ -241,33 +244,43 @@
           </table>
           <small>Note: p-values were obtained from two-tailed t-tests (without correction and alpha=0.05).</small>
           <br>
+          <br>
           The first thing to notice is that whether you're a player that quickly abandoned the game or not, you probably
           won your first match against computers. This is almost certainly the intention of Riot, as they probably don't want the first
           experience you have with the game to be a giant red DEFEATED banner across your screen.
-
+          <br>
+          <br>
           Next notice that while there is a small difference in KDA, but it's surprisingly underwhelming since you'd think players that
           were catching onto the game more quickly would be getting more kills and dying less.
-
+          <br>
+          <br>
           However, when you look at the average gold earned by a player we see a striking difference. This makes sense since players that
           are getting the hang of the game faster are likely doing more actions that earn gold (killing champions, killing minions, killing turrets, etc.)
-
+          <br>
+          <br>
           Lastly, looking at average number of minions killed by each group of players we see another huge difference. Anecdotally,
           being a relatively new player myself, it took several matches for me to start to appreciate just how important getting the last
           hit on minions (CS) is on your success in the game.
-
+          <br>
+          <br>
           Let's plot the average minions kills by group to get a better sense of the difference there:
           <br>
+          <br>
             <img src="minions_swarm_high_res.png">
+          <br>
           <br>
           Looking at the plot we can confirm that there is a trend where the group of players that finished their tutorial matches are getting
           more minion kills.
           <br>
+          <br>
           Let's look at it from a different perspective:
+          <br>
           <br>
             <img src="minions_box_high_res.png">
           <br>
+          <br>
           Seeing all the outliers (dots above the boxes) tells us that there are a large group of new players that are doing astoundingly well
-          at killing minions. It is possible that those points are largely smurf accounts (new accounts made by veteran players). 
+          at killing minions. It is possible that those points are largely smurf accounts (new accounts made by veteran players).
 
         </p>
 
