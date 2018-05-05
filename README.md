@@ -9,6 +9,7 @@ Based on the performance of a player's first match, is that player going to make
 
 ### To learn more click <a href="https://dskarbrevik.github.io/League-of-Legends-Churn-Prediction/">here</a>
 
+<br>
 
 **To see the code step by step, click the title of whichever part you're interested in:**
 
