@@ -10,7 +10,7 @@ Based on the performance of a player's first match, is that player going to make
 
 <br>
 
-_(to see the code step by step, click the title of whichever part you're interested in)_
+### To see the code step by step, click the title of whichever part you're interested in:
 
 ### Part 1: <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb">Data Collection</a>
 
