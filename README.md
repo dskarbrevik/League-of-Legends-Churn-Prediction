@@ -7,7 +7,7 @@ New League of Legends players start as level 1 "summoners" and can only play mat
 Based on the performance of a player's first match, is that player going to make it to level 3 or give up on the game before then?
 
 
-### To learn more click <a href="https://dskarbrevik.github.io/League-of-Legends-Churn-Prediction/">here</a>
+### or to learn more click <a href="https://dskarbrevik.github.io/League-of-Legends-Churn-Prediction/">here</a>
 
 <br>
 
