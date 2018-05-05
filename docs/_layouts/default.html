@@ -178,7 +178,7 @@
           <br>
           <figure>
             <img src="first_matches_high_res.png">
-            <figcaption><i>Note: not all x-axis labels shown to improve readability</i></figcaption>
+            <figcaption>Note: not all x-axis labels shown to improve readability</figcaption>
           </figure>
           <br>
           As you can see, all players began playing in 2018 and most in early to mid May. This is due to the constraints
@@ -232,13 +232,13 @@
                 <th>Average gold earned</th>
                 <td>7983</td>
                 <td>6728</td>
-                <td>YES<br>(2.59x10^-11)</td>
+                <td>YES<br>(2.59 x 10 ^ -11)</td>
               </tr>
               <tr>
                 <th>Average minions killed</th>
                 <td>30</td>
                 <td>49</td>
-                <td>YES<br>(6x10^-14)
+                <td>YES<br>(6 x 10 ^ -14)
               </tr>
             </tbody>
           </table>
@@ -255,7 +255,8 @@
           <br>
           <br>
           However, when you look at the average gold earned by a player we see a striking difference. This makes sense since players that
-          are getting the hang of the game faster are likely doing more actions that earn gold (killing champions, killing minions, killing turrets, etc.)
+          are getting the hang of the game faster are likely doing more actions that earn gold (killing champions, killing minions,
+          killing turrets, etc.)
           <br>
           <br>
           Lastly, looking at average number of minions killed by each group of players we see another huge difference. Anecdotally,
@@ -269,8 +270,8 @@
             <img src="minions_swarm_high_res.png">
           <br>
           <br>
-          Looking at the plot we can confirm that there is a trend where the group of players that finished their tutorial matches are getting
-          more minion kills.
+          Looking at the plot we can confirm that there is a trend where the group of players that finished their tutorial matches
+          are getting more minion kills.
           <br>
           <br>
           Let's look at it from a different perspective:
@@ -282,14 +283,115 @@
           Seeing all the outliers (dots above the boxes) tells us that there are a large group of new players that are doing astoundingly well
           at killing minions. It is possible that those points are largely smurf accounts (new accounts made by veteran players).
 
+          <br>
+          <br>
+          Now that we have our data and have taken a look at it (however briefly), let's try our luck at predicting
+          if a user will finish their tutorial matches or not!
         </p>
 
-
       <h2 id="topic5"> Churn Prediction Modeling </h2>
-
-
-
-
+        <p>
+          To showcase the magic we're trying to capture, let's look at an example player who just finished their first match.
+          <br>
+          <br>
+          Here is some data a player's first match:
+          <br>
+          <table>
+            <thead>
+              <tr>
+                <th>Summoner id</th>
+                <th>Win</th>
+                <th>Role</th>
+                <th>Minions Killed</th>
+                <th>Kills</th>
+                <th>Deaths</th>
+                <th>Assists</th>
+                <th>Finished Tutorial Matches?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>93729916</td>
+                <td>Yes</td>
+                <td>Support</td>
+                <td>27</td>
+                <td>6</td>
+                <td>2</td>
+                <td>6</td>
+                <td>????</td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          <br>
+          Do you think they'll play another three matches? Or no? Kind of hard to say. Again, there are actually over 100 features
+          we could examine to make a choice, but instead of pouring over all that, let's see what a logistic regression model decides instead.
+          Because of the binary (yes/no) nature of this prediction task, a logistic regression model is a solid choice for this problem.
+          <br>
+          <br>
+          On this particular problem, a simple logistic regression model predicts this player will make it at least to level 3... and it's right!
+          <br>
+          <br>
+          Now speaking more systematically, our logistic regression model was trained on 1196 examples and then tested on 299 examples.
+          It's accuracy on the test set was 74.25%. Not bad! This is a great starting point and shows us that this is certainly a
+          reasonable prediction task.
+          <br>
+          <br>
+          Here are the accuracy results of a few more models:
+          <table>
+            <tr>
+              <th>Model Type</th>
+              <th>Test set accuracy</th>
+              <th>F1-score</th>
+            </tr>
+            <tr>
+              <th>Logistic Regression</th>
+              <td>74.25%</td>
+              <td>0.84</td>
+            </tr>
+            <tr>
+              <th>Decision Tree</th>
+              <td>62.21%</td>
+              <td>0.74</td>
+            </tr>
+            <tr>
+              <th>Random Forests</tr>
+              <td>70.90%</td>
+              <td>0.82</td>
+            </tr>
+            <tr>
+              <th>Ada Boost</th>
+              <td>70.90%</td>
+              <td>0.81</td>
+            </tr>
+          </table>
+          <small>Note: all models implemented with sklearn and without any hypertuning</small>
+          <br>
+          <br>
+          Logistic regression is still looking like our best model. There are a few things we might want to do to improve
+          test set accuracy. We could collect more data, we could tune the hyperparameters of our models, we could consider creating new features
+          in our data (for example, adding in the KDA feature we created during data analysis) OR we could try different models.
+          I chose the last option because I am interested in seeing the performance of a simple feedforward neural network model on this dataset.
+          <br>
+          <br>
+          After training a neural network for just 2 epochs, we see a test set accuracy of X! Quite impressive!
+          To see the code and details of my network implementation, go toward the end of my
+          <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%203%20-%20Data%20Modeling%5D.ipynb">Modeling notebook</a> (which can also be found in this project's github repo).
+          <br>
+          <br>
+          <b>So in the end we were able to show that using a simple neural network, we can predict, with high accuracy,
+            if a League of Legends player will get to level 3 (i.e. finish their tutorial matches) using only publically accesible
+            game data from that player's first League of Legends match!</b>
+          <br>
+          <br>
+          For detailed implementation of any part of this project, please see my Jupyter notebooks:
+          <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb"><b>Data Collection</b></a>
+          <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%202%20-%20Data%20Cleaning%20and%20EDA%5D.ipynb"><b>Data Cleaning and EDA</b></a>
+          <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%203%20-%20Data%20Modeling%5D.ipynb"><b>Data Modeling</b></a>
+          <br>
+          <br>
+          Thank you for your interest in this project!
+        </p>
 
       <h2 id="topic6"> Resources </h2>
       <ol>
@@ -304,6 +406,7 @@
               </a>
           </li>
       </ol>
+
       <!-- use this if you want to use README.md as main html page text instead
       {{ content }}
       -->
