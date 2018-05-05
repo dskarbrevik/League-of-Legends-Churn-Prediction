@@ -59,28 +59,33 @@
 
       <h2 id="topic1"> What is League of Legends Churn Predictor? </h2>
 
-        <p> New League of Legends (LoL) players begin as a level 1 "summoner".
-          They must play enough matches against computers to become a level 3 summoner (roughly 3-4 matches) before they can play against other humans.
-          League of Legends matches are often 15-30 minutes each, making the investment to become a level 3 summoner significant for a new player.
-          <br>
-          <br>
-          <b>Given gameplay data from the first match of a new League of Legends player, this project seeks to
-            predict whether that player will get to level 3 within one month of their first match.</b>
+        <p>
+        New League of Legends (LoL) players begin as a level 1 "summoner".
+        They must play enough matches against computers to become a level 3 summoner (roughly 3-4 matches) before they can play against other humans.
+        League of Legends matches are often 15-30 minutes each, making the investment to become a level 3 summoner significant for a new player.
+        </p>
+
+        <p>
+        <b>Given gameplay data from the first match of a new League of Legends player, this project seeks to
+        predict whether that player will get to level 3 within one month of their first match.</b>
         </p>
 
       <h2 id="topic2"> Background motivation </h2>
 
-        <p> Churn rate is often defined as the number of customers/players/users that have stopped using a product/service for a specific period of time (perhaps a month).
-          Generally, churn rate considers the entire customer base (not just new or old customers). However, for a product like a video game, the first few moments have a profound
-          can cause someone to never play the game again or it can plant the seed of a superfan that has great loyalty and interest in everything about the game.
-          <br>
-          <br>
-          There are some acceptable reasons why a customer would leave a product/service, perhaps the customer has happily fulfilled their needs with the product and it was a natural time
-          for them to stop using the product. However, many other reasons might be avoidable, for example, in a game like League of Legends, a player may stop playing the game due to frustration
-          with non-intuitive controls or game mechanics. Maybe even just a small encouragement could completely change that player's outlook on those first few experiences with the game.
-          <br>
-          <br>
-          With that in mind, this churn predictor project seeks to identify these players that may give up on the game before giving it a proper chance to impress them.
+        <p>
+        Churn rate is often defined as the number of customers/players/users that have stopped using a product/service for a specific period of time (perhaps a month).
+        Generally, churn rate considers the entire customer base (not just new or old customers). However, for a product like a video game, the first few moments have a profound
+        can cause someone to never play the game again or it can plant the seed of a superfan that has great loyalty and interest in everything about the game.
+        </p>
+
+        <p>
+        There are some acceptable reasons why a customer would leave a product/service, perhaps the customer has happily fulfilled their needs with the product and it was a natural time
+        for them to stop using the product. However, many other reasons might be avoidable, for example, in a game like League of Legends, a player may stop playing the game due to frustration
+        with non-intuitive controls or game mechanics. Maybe even just a small encouragement could completely change that player's outlook on those first few experiences with the game.
+        </p>
+
+        <p>
+        With that in mind, this churn predictor project seeks to identify these players that may give up on the game before giving it a proper chance to impress them.
         </p>
 
 
@@ -90,13 +95,12 @@
         This project gathers data from Riot's API <sup><a href="#resource_1">[1]</a></sup>
         using the Cassiopeia <sup><a href="#resource_2">[2]</a></sup> python library.
         </p>
+
         <p>
         The API gives access to basic data about a player as well as their match history
         and in-game data from each match. Note, the API spans three years from the current date,
         so any data older than three years is not accessible.
         </p>
-
-        <br>
 
         <p><b>Here is an example of some basic information you can get from a player:</b></p>
 
@@ -153,17 +157,20 @@
         <p>These are just a few statistics, in total we have over 100 data points for each new player's first match.</p>
 
         <h3>The big challenge</h3>
+
         <p>
-        There is just one complication in getting this data: you need a player's name or id in order to get their match data.
+        There is just one complication in getting this data: <b>you need a player's name or id in order to get their match data.</b>
         The API does not provide any way to obtain random player names. The only player names you can obtain are those in the
         Challenger and Master leagues (the highest ranking competitive players... the dead opposite of new players).
         </p>
+
         <p>
         But there's hope! The API tells you the names of other players that were in a given game.
         Most commonly a game has 10 players (or 5 for new players: 5 humans vs. 5 computers).
         So if I know one player that played 10 games, that's theoretically 90 new players I have access to
         (if that one player never played with the same players twice).
         </p>
+
         <p>
         Because Riot's matchmaking system tends to place people of similar levels in the same game, I created a new account
         and played my first match on that account. This gave me four other low level players to potentially add to my dataset.
@@ -180,221 +187,232 @@
       <h2 id="topic4"> Exploratory Data Analysis </h2>
 
         <p>
-          First let's see when the players in my dataset played their first match.
-          <br>
-          <figure>
-            <img src="first_matches_high_res.png">
-            <figcaption>Note: not all x-axis labels shown to improve readability</figcaption>
-          </figure>
-          <br>
-          As you can see, all players began playing in 2018 and most in early to mid May. This is due to the constraints
-          I made when collecting the data, but seeing this, it may be worth trimming off players that began playing before
-          May as this could add noise or overfitting for our model. However I am choosing to leave these players in the dataset.
-          <br>
-          <br>
-          Because this project revolves larger around the idea of a player's summoner level,
-          let's get a better idea of what that looks like in my dataset.
-          <br>
-          <img src="summoner_level_high_res.png">
-          <br>
-          <br>
-          Notice how the distribution is skewed toward players that are levels four and five.
-          This is another artifact of the way data was collected and does not necessarily mean
-          that more LoL players are levels four and five than one through three.
-          <br>
-          <br>
-          Now that we have some idea of how the dataset looks in general, let's handpick a few features that I predict will
-          be important in differentiating players that give up on LoL before reaching level 3.
-          <br>
-          <br>
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th>New players that finished tutorial matches<br>(n = 1109)</th>
-                <th>New players that didn't finish tutorial matches<br>(n = 386)</th>
-                <th>Significantly<br>different?<br>(p-value)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Win rate</th>
-                <td>95.67%</td>
-                <td>96.89%</td>
-                <td>NO<br>(0.29)</td>
-              </tr>
-              <tr>
-                <th>KDA<br>(kills, deaths, assists)</th>
-                <td>8.49</td>
-                <td>6.00</td>
-                <td>YES<br>(0.00001)</td>
-              </tr>
-              <tr>
-                <th>Average match duration<br>(hh:mm:ss)</th>
-                <td>00:19:18</td>
-                <td>00:18:26</td>
-                <td>YES<br>(0.00821)</td>
-              </tr>
-              <tr>
-                <th>Average gold earned</th>
-                <td>7983</td>
-                <td>6728</td>
-                <td>YES<br>(2.59 x 10 ^ -11)</td>
-              </tr>
-              <tr>
-                <th>Average minions killed</th>
-                <td>30</td>
-                <td>49</td>
-                <td>YES<br>(6 x 10 ^ -14)
-              </tr>
-            </tbody>
-          </table>
-          <small>Note: p-values were obtained from two-tailed t-tests (without correction and alpha=0.05).</small>
-          <br>
-          <br>
-          The first thing to notice is that whether you're a player that quickly abandoned the game or not, you probably
-          won your first match against computers. This is almost certainly the intention of Riot, as they probably don't want the first
-          experience you have with the game to be a giant red DEFEATED banner across your screen.
-          <br>
-          <br>
-          Next notice that while there is a small difference in KDA, but it's surprisingly underwhelming since you'd think players that
-          were catching onto the game more quickly would be getting more kills and dying less.
-          <br>
-          <br>
-          However, when you look at the average gold earned by a player we see a striking difference. This makes sense since players that
-          are getting the hang of the game faster are likely doing more actions that earn gold (killing champions, killing minions,
-          killing turrets, etc.)
-          <br>
-          <br>
-          Lastly, looking at average number of minions killed by each group of players we see another huge difference. Anecdotally,
-          being a relatively new player myself, it took several matches for me to start to appreciate just how important getting the last
-          hit on minions (CS) is on your success in the game.
-          <br>
-          <br>
-          Let's plot the average minions kills by group to get a better sense of the difference there:
-          <br>
-          <br>
-            <img src="minions_swarm_high_res.png">
-          <br>
-          <br>
-          Looking at the plot we can confirm that there is a trend where the group of players that finished their tutorial matches
-          are getting more minion kills.
-          <br>
-          <br>
-          Let's look at it from a different perspective:
-          <br>
-          <br>
-            <img src="minions_box_high_res.png">
-          <br>
-          <br>
-          Seeing all the outliers (dots above the boxes) tells us that there are a large group of new players that are doing astoundingly well
-          at killing minions. It is possible that those points are largely smurf accounts (new accounts made by veteran players).
+        First let's see when the players in my dataset played their first match.
+        </p>
 
-          <br>
-          <br>
-          Now that we have our data and have taken a look at it (however briefly), let's try our luck at predicting
-          if a user will finish their tutorial matches or not!
+        <figure>
+          <img src="first_matches_high_res.png">
+          <figcaption>Note: not all x-axis labels shown to improve readability</figcaption>
+        </figure>
+
+        <br>
+
+        <p>
+        As you can see, all players began playing in 2018 and most in early to mid May. This is due to the constraints
+        I made when collecting the data, but seeing this, it may be worth trimming off players that began playing before
+        May as this could add noise or overfitting for our model. However I am choosing to leave these players in the dataset.
+        </p>
+
+        <p>
+        Because this project revolves larger around the idea of a player's summoner level,
+        let's get a better idea of what that looks like in my dataset.
+        </p>
+
+        <img src="summoner_level_high_res.png">
+
+        <p>
+        Notice how the distribution is skewed toward players that are levels four and five.
+        This is another artifact of the way data was collected and does not necessarily mean
+        that more LoL players are levels four and five than one through three.
+        </p>
+
+        <p>
+        Now that we have some idea of how the dataset looks in general, let's handpick a few features that I predict will
+        be important in differentiating players that give up on LoL before reaching level 3.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>New players that finished tutorial matches<br>(n = 1109)</th>
+              <th>New players that didn't finish tutorial matches<br>(n = 386)</th>
+              <th>Significantly<br>different?<br>(p-value)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Win rate</th>
+              <td>95.67%</td>
+              <td>96.89%</td>
+              <td>NO<br>(0.29)</td>
+            </tr>
+            <tr>
+              <th>KDA<br>(kills, deaths, assists)</th>
+              <td>8.49</td>
+              <td>6.00</td>
+              <td>YES<br>(0.00001)</td>
+            </tr>
+            <tr>
+              <th>Average match duration<br>(hh:mm:ss)</th>
+              <td>00:19:18</td>
+              <td>00:18:26</td>
+              <td>YES<br>(0.00821)</td>
+            </tr>
+            <tr>
+              <th>Average gold earned</th>
+              <td>7983</td>
+              <td>6728</td>
+              <td>YES<br>(2.59 x 10 ^ -11)</td>
+            </tr>
+            <tr>
+              <th>Average minions killed</th>
+              <td>30</td>
+              <td>49</td>
+              <td>YES<br>(6 x 10 ^ -14)
+            </tr>
+          </tbody>
+        </table>
+
+        <p><small>Note: p-values were obtained from two-tailed t-tests (without correction and alpha=0.05).</small></p>
+
+        <p>
+        The first thing to notice is that whether you're a player that quickly abandoned the game or not, you probably
+        won your first match against computers. This is almost certainly the intention of Riot, as they probably don't want the first
+        experience you have with the game to be a giant red DEFEATED banner across your screen.
+        </p>
+
+        <p>
+        Next notice that while there is a small difference in KDA, but it's surprisingly underwhelming since you'd think players that
+        were catching onto the game more quickly would be getting more kills and dying less.
+        </p>
+
+        <p>
+        However, when you look at the average gold earned by a player we see a striking difference. This makes sense since players that
+        are getting the hang of the game faster are likely doing more actions that earn gold (killing champions, killing minions,
+        killing turrets, etc.)
+        </p>
+
+        <p>
+        Lastly, looking at average number of minions killed by each group of players we see another huge difference. Anecdotally,
+        being a relatively new player myself, it took several matches for me to start to appreciate just how important getting the last
+        hit on minions (CS) is on your success in the game.
+        </p>
+
+        <p>Let's plot the average minions kills by group to get a better sense of the difference there:</p>
+
+        <img src="minions_swarm_high_res.png">
+
+        <p>
+        Looking at the plot we can confirm that there is a trend where the group of players that finished their tutorial matches
+        are getting more minion kills.
+        </p>
+
+        <p>Let's look at it from a different perspective:</p>
+
+        <img src="minions_box_high_res.png">
+
+        <p>
+        Seeing all the outliers (dots above the boxes) tells us that there are a large group of new players that are doing astoundingly well
+        at killing minions. It is possible that those points are largely smurf accounts (new accounts made by veteran players).
+        </p>
+
+        <p>
+        Now that we have our data and have taken a look at it (however briefly), let's try our luck at predicting
+        if a user will finish their tutorial matches or not!
         </p>
 
       <h2 id="topic5"> Churn Prediction Modeling </h2>
+
+        <p>To showcase the magic we're trying to capture, let's look at an example player who just finished their first match.</p>
+
+        <p>Here is some data a player's first match:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Summoner id</th>
+              <th>Win</th>
+              <th>Role</th>
+              <th>Minions Killed</th>
+              <th>Kills</th>
+              <th>Deaths</th>
+              <th>Assists</th>
+              <th>Finished Tutorial Matches?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>93729916</td>
+              <td>Yes</td>
+              <td>Support</td>
+              <td>27</td>
+              <td>6</td>
+              <td>2</td>
+              <td>6</td>
+              <td>????</td>
+            </tr>
+          </tbody>
+        </table>
+
         <p>
-          To showcase the magic we're trying to capture, let's look at an example player who just finished their first match.
-          <br>
-          <br>
-          Here is some data a player's first match:
-          <br>
-          <table>
-            <thead>
-              <tr>
-                <th>Summoner id</th>
-                <th>Win</th>
-                <th>Role</th>
-                <th>Minions Killed</th>
-                <th>Kills</th>
-                <th>Deaths</th>
-                <th>Assists</th>
-                <th>Finished Tutorial Matches?</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>93729916</td>
-                <td>Yes</td>
-                <td>Support</td>
-                <td>27</td>
-                <td>6</td>
-                <td>2</td>
-                <td>6</td>
-                <td>????</td>
-              </tr>
-            </tbody>
-          </table>
-          <br>
-          <br>
-          Do you think they'll play another three matches? Or no? Kind of hard to say. Again, there are actually over 100 features
-          we could examine to make a choice, but instead of pouring over all that, let's see what a logistic regression model decides instead.
-          Because of the binary (yes/no) nature of this prediction task, a logistic regression model is a solid choice for this problem.
-          <br>
-          <br>
-          On this particular problem, a simple logistic regression model predicts this player will make it at least to level 3... and it's right!
-          <br>
-          <br>
-          Now speaking more systematically, our logistic regression model was trained on 1196 examples and then tested on 299 examples.
-          It's accuracy on the test set was 74.25%. Not bad! This is a great starting point and shows us that this is certainly a
-          reasonable prediction task.
-          <br>
-          <br>
-          Here are the accuracy results of a few more models:
-          <br>
-          <center>
-            <table>
-              <tr>
-                <th>Model Type</th>
-                <th>Test set accuracy</th>
-                <th>F1-score</th>
-              </tr>
-              <tr>
-                <th>Logistic Regression</th>
-                <td>74.25%</td>
-                <td>0.84</td>
-              </tr>
-              <tr>
-                <th>Decision Tree</th>
-                <td>62.21%</td>
-                <td>0.74</td>
-              </tr>
-              <tr>
-                <th>Random Forests</th>
-                <td>70.90%</td>
-                <td>0.82</td>
-              </tr>
-              <tr>
-                <th>Ada Boost</th>
-                <td>70.90%</td>
-                <td>0.81</td>
-              </tr>
-            </table>
-          </center>
-          <small>Note: all models implemented with sklearn and without any hypertuning</small>
-          <br>
-          <br>
-          Logistic regression is still looking like our best model. There are a few things we might want to do to improve
-          test set accuracy. We could collect more data, we could tune the hyperparameters of our models, we could consider creating new features
-          in our data (for example, adding in the KDA feature we created during data analysis) OR we could try different models.
-          I chose the last option because I am interested in seeing the performance of a simple feedforward neural network model on this dataset.
-          <br>
-          <br>
-          After training a neural network for just 2 epochs, we see a test set accuracy of X! Quite impressive!
-          To see the code and details of my network implementation, go toward the end of my
-          <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%203%20-%20Data%20Modeling%5D.ipynb">Modeling notebook</a> (which can also be found in this project's github repo).
-          <br>
-          <br>
-          <b>In the end we were able to show that using a simple neural network, we can predict, with high accuracy,
-            if a League of Legends player will get to level 3 (i.e. finish their tutorial matches) using only publically accesible
-            game data from that player's first League of Legends match!</b>
-          <br>
-          <br>
-          For detailed implementation of any part of this project, please see my Jupyter notebooks:
+        Do you think they'll play another three matches? Or no? Kind of hard to say. Again, there are actually over 100 features
+        we could examine to make a choice, but instead of pouring over all that, let's see what a logistic regression model decides instead.
+        Because of the binary (yes/no) nature of this prediction task, a logistic regression model is a solid choice for this problem.
+        </p>
+
+        <p>
+        On this particular problem, a simple logistic regression model predicts this player will make it at least to level 3... and it's right!
+        </p>
+
+        <p>
+        Now speaking more systematically, our logistic regression model was trained on 1196 examples and then tested on 299 examples.
+        It's accuracy on the test set was 74.25%. Not bad! This is a great starting point and shows us that this is certainly a
+        reasonable prediction task.
+        </p>
+
+        <p>Here are the accuracy results of a few more models:</p>
+
+        <table align="center">
+          <tr>
+            <th>Model Type</th>
+            <th>Test set accuracy</th>
+            <th>F1-score</th>
+          </tr>
+          <tr>
+            <th>Logistic Regression</th>
+            <td>74.25%</td>
+            <td>0.84</td>
+          </tr>
+          <tr>
+            <th>Decision Tree</th>
+            <td>62.21%</td>
+            <td>0.74</td>
+          </tr>
+          <tr>
+            <th>Random Forests</th>
+            <td>70.90%</td>
+            <td>0.82</td>
+          </tr>
+          <tr>
+            <th>Ada Boost</th>
+            <td>70.90%</td>
+            <td>0.81</td>
+          </tr>
+        </table>
+
+        <p><small>Note: all models implemented with sklearn and without any hypertuning</small></p>
+
+        <p>
+        Logistic regression is still looking like our best model. There are a few things we might want to do to improve
+        test set accuracy. We could collect more data, we could tune the hyperparameters of our models, we could consider creating new features
+        in our data (for example, adding in the KDA feature we created during data analysis) OR we could try different models.
+        I chose the last option because I am interested in seeing the performance of a simple feedforward neural network model on this dataset.
+        </p>
+
+        <p>
+        After training a neural network for just 2 epochs, we see a test set accuracy of X! Quite impressive!
+        To see the code and details of my network implementation, go toward the end of my
+        <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%203%20-%20Data%20Modeling%5D.ipynb">Modeling notebook</a> (which can also be found in this project's github repo).
+        </p>
+
+        <p>
+        <b>In the end we were able to show that using a simple neural network, we can predict, with high accuracy,
+          if a League of Legends player will get to level 3 (i.e. finish their tutorial matches) using only publically accesible
+          game data from that player's first League of Legends match!</b>
+        </p>
+
+        <p>For detailed implementation of any part of this project, please see my Jupyter notebooks:
           <br>
           <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb"><b>Data Collection</b></a>
           <br>
@@ -403,8 +421,9 @@
           <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%203%20-%20Data%20Modeling%5D.ipynb"><b>Data Modeling</b></a>
           <br>
           <br>
-          <b>Thank you for your interest in this project!</b>
         </p>
+
+        <p><b>Thank you for your interest in this project!</b></p>
 
       <h2 id="topic6"> Resources </h2>
       <ol>
