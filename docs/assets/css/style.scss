@@ -41,6 +41,10 @@ $table-border-color: #252423 !default;
 //   background: #252423;
 // }
 
+table{
+  margin: 0 auto;
+}
+
 th, td{
   border: 5px solid;
 }
