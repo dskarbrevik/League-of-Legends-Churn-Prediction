@@ -177,15 +177,14 @@
         I then looked at their match histories to find low level players that <i>they</i> played with.
         </p>
 
-        <br>
-        <br>
-
         <img src="data_collection.png">
 
         <p>
         I continued this iterative, branching process until I finally had a dataset of over 1,000 players
         and the stats from each of those player's first match.
         </p>
+        <br>
+        <br>
 
       <h2 id="topic4"> Exploratory Data Analysis </h2>
 
@@ -219,11 +218,43 @@
         that more LoL players are levels four and five than one through three.
         </p>
 
+        <p>Next let's apply prinicpal component analysis to our data to get a better idea of which features have the most explanatory power.</p>
+
+        <img src="PCA_explained_variance_high_res.png">
+
         <p>
-        Now that we have some idea of how the dataset looks in general, let's handpick a few features that I predict will
+        You can see how the majority of variance in the data can be explained in the first two components (95.75% to be exact). Let's see what features are most important to those components.
+        </p>
+        <table>
+          <tr>
+            <th>Top Features</th>
+            <th>First component</th>
+            <th>Second component</th>
+          </tr>
+          <tr>
+            <td>Total Damage Dealt</td>
+            <td>74.92%</td>
+            <td>24.15%</td>
+          </tr>
+          <tr>
+            <td>Physical Damage Dealt</td>
+            <td>55.37%</td>
+            <td>56.52%</td>
+          </tr>
+          <tr>
+            <td>Magic Damage Dealt</td>
+            <td>16.26%</td>
+            <td>72.91%</td>
+          </tr>
+        </table>
+        <br>
+        <br>
+        <p>As you can see, all features with high variance are thematically linked to the idea of "dealing damage".</p>
+
+        <p>
+        Now that we have some idea of how the dataset looks in general, with the help of the principal component analysis and my intuition, I'll handpick a few features that I think will
         be important in differentiating players that give up on LoL before reaching level 3.
         </p>
-        <br>
         <br>
         <table>
           <thead>
@@ -231,7 +262,7 @@
               <th></th>
               <th>New players that finished tutorial matches<br>(n = 1109)</th>
               <th>New players that didn't finish tutorial matches<br>(n = 386)</th>
-              <th>Significantly<br>different?<br>(p-value)</th>
+              <th>Significantly different?<br>(p-value)</th>
             </tr>
           </thead>
           <tbody>
@@ -270,8 +301,6 @@
               <td>28614</td>
               <td>46486</td>
               <td>YES<br>(6.39 x 10 ^ -12)</td>
-
-
           </tbody>
         </table>
 
@@ -291,7 +320,8 @@
         <p>
         However, when you look at the average gold earned by a player we see a striking difference. This makes sense since players that
         are getting the hang of the game faster are likely doing more actions that earn gold (killing champions, killing minions,
-        killing turrets, etc.)
+        killing turrets, etc.). Another big difference is seen in total damage dealt. This makes intuitive sense for the same reason as
+        gold earned, and it was somewhat expected since it was seen to be so important to our PCA model earlier.
         </p>
 
         <p>
@@ -440,31 +470,40 @@
         </table>
         <br>
         <p>
-
-
-
+        It turns out that with this configuration I was able to get about 78% test set accuracy. I wasn't very happy with this outcome so I went back to my PART 1 (data collection) notebook,
+        and gathered more data. I increased the dataset from around 1,000 rows to about .
+        </p>
+        <br>
+        <br>
+        <p><b>The result of applying more data to the neural network:</b></p>
+        <!--<img src="">-->
+        <br>
+        <br>
+        <p>As you can see our <b>test set accuracy is now up to X! Much better!</b></p>
         <p>
         <b>In the end, we were able to show that we can predict, with reasonably high accuracy,
           if a League of Legends player will get to level 3 (i.e. finish their tutorial matches) using only publically accesible
           game data from that player's first League of Legends match!</b>
         </p>
 
-        <p>For detailed implementation of any part of this project, please see my Jupyter notebooks:
+        <p>For detailed implementation of any part of this project, please see my Jupyter notebooks:</p>
           <br>
           <br>
-          <p><b>PART 1: </b></p>
+          <p><b>PART 1: </b>
           <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb"><b>Data Collection</b></a>
+          </p>
           <br>
           <br>
-          <p><b>PART 2: </b></p>
+          <p><b>PART 2: </b>
           <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%202%20-%20Data%20Cleaning%20and%20EDA%5D.ipynb"><b>Data Cleaning and EDA</b></a>
+          </p>
           <br>
           <br>
-          <p><b>PART 3: </b></p>
+          <p><b>PART 3: </b>
           <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%203%20-%20Data%20Modeling%5D.ipynb"><b>Data Modeling</b></a>
+          </p>
           <br>
           <br>
-        </p>
 
         <p><b>Thank you for your interest in this project!</b></p>
 
