@@ -58,7 +58,7 @@ p.center{
 }
 
 p.center-left{
-  width:95%;
+  width:100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -66,9 +66,9 @@ p.center-left{
 table.fixed{
   border-collapse: collapse;
   table-layout: fixed;
-  width:95%;
-  margin-left: auto;
-  margin-right: auto;
+  width:100%;
+  // margin-left: auto;
+  // margin-right: auto;
 }
 
 th, td{
@@ -78,6 +78,10 @@ th, td{
 td{
     text-align: center;
     vertical-align: middle;
+}
+
+td+td{
+  width: auto;
 }
 
 figcaption{

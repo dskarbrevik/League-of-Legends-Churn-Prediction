@@ -1,9 +1,10 @@
 theme: jekyll-theme-cayman
 google_analytics: UA-118772641-1
-defaults:
-
-  -
-    scope:
-      path: ""
-    values:
-      title: "LoL Churn Predictor"
+title: "LoL Churn Predictor"
+# defaults:
+#
+#   -
+#     scope:
+#       path: ""
+#     values:
+#       title: "LoL Churn Predictor"
