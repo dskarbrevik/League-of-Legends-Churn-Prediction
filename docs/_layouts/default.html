@@ -184,13 +184,15 @@
         and the stats from each of those player's first match.
         </p>
         <br>
-        <br>
 
       <h2 id="topic4"> Exploratory Data Analysis </h2>
 
         <p>
-        First let's see when the players in my dataset played their first match.
+        There are over 100 features we could examine in this dataset, but since we've gathered this data primarily to model a prediction task,
+        we will limit our exploratory analysis to features that feel most relevant to that task.
         </p>
+
+        <p>First let's see when the players in my dataset played their first match.</p>
 
         <figure>
           <img src="first_matches_high_res.png">
@@ -205,10 +207,7 @@
         May as this could add noise or overfitting for our model. However I am choosing to leave these players in the dataset.
         </p>
 
-        <p>
-        Because this project revolves larger around the idea of a player's summoner level,
-        let's get a better idea of what that looks like in my dataset.
-        </p>
+        <p>Because the prediction task I want to model later revolves around a player's "summoner level" let's take a look at that.</p>
 
         <img src="summoner_level_high_res.png">
 
@@ -220,11 +219,11 @@
 
         <p>Next let's apply prinicpal component analysis to our data to get a better idea of which features have the most explanatory power.</p>
 
-        <img src="PCA_explained_variance_high_res.png">
+        <img src="PCA_explained_variance_high_res.png" style="width:80%;">
 
-        <p>
-        You can see how the majority of variance in the data can be explained in the first two components (95.75% to be exact). Let's see what features are most important to those components.
-        </p>
+        <p>You can see how the majority of variance in the data can be explained in the first two components (95.75% to be exact). </p>
+        <p>Let's see what features are most important to those components.</p>
+        <br>
         <table>
           <tr>
             <th>Top Features</th>
