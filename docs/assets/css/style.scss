@@ -51,13 +51,20 @@ table.center{
   margin-right: auto;
 }
 
-p.footnote{
+p.center{
   width:50%;
   margin-left: auto;
   margin-right: auto;
 }
 
+p.center-left{
+  width:95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 table.fixed{
+  border-collapse: collapse;
   table-layout: fixed;
   width:95%;
   margin-left: auto;
