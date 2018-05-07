@@ -177,6 +177,9 @@
         I then looked at their match histories to find low level players that <i>they</i> played with.
         </p>
 
+        <br>
+        <br>
+
         <img src="data_collection.png">
 
         <p>
@@ -220,7 +223,8 @@
         Now that we have some idea of how the dataset looks in general, let's handpick a few features that I predict will
         be important in differentiating players that give up on LoL before reaching level 3.
         </p>
-
+        <br>
+        <br>
         <table>
           <thead>
             <tr>
@@ -259,13 +263,20 @@
               <th>Average minions killed</th>
               <td>30</td>
               <td>49</td>
-              <td>YES<br>(6 x 10 ^ -14)
+              <td>YES<br>(6.61 x 10 ^ -14)</td>
             </tr>
+            <tr>
+              <th>Average damage dealt</th>
+              <td>28614</td>
+              <td>46486</td>
+              <td>YES<br>(6.39 x 10 ^ -12)</td>
+
+
           </tbody>
         </table>
 
         <p><small>Note: p-values were obtained from two-tailed t-tests (without correction and alpha=0.05).</small></p>
-
+        <br>
         <p>
         The first thing to notice is that whether you're a player that quickly abandoned the game or not, you probably
         won your first match against computers. This is almost certainly the intention of Riot, as they probably don't want the first
@@ -315,7 +326,7 @@
       <h2 id="topic5"> Churn Prediction Modeling </h2>
 
         <p>To showcase the magic we're trying to capture, let's look at an example player who just finished their first match.</p>
-
+        <br>
         <p>Here is some data from a player's first match:</p>
 
         <table>
@@ -344,7 +355,7 @@
             </tr>
           </tbody>
         </table>
-
+        <br>
         <p>
         Do you think they'll play another three matches? Or no? Kind of hard to say. Again, there are actually over 100 features
         we could examine to make a choice, but instead of pouring over all that, let's see what a logistic regression model decides instead.
@@ -360,7 +371,7 @@
         It's accuracy on the test set was 74.25%. Not bad! This is a great starting point and shows us that this is certainly a
         reasonable prediction task.
         </p>
-
+        <br>
         <p>Here are the accuracy results of a few more models:</p>
 
         <table>
@@ -392,32 +403,64 @@
         </table>
 
         <p><small>Note: all models implemented with sklearn and without any hypertuning</small></p>
-
+        <br>
         <p>
         Logistic regression is still looking like our best model. There are a few things we might want to do to improve
         test set accuracy. We could collect more data, we could tune the hyperparameters of our models, we could consider creating new features
         in our data (for example, adding in the KDA feature we created during data analysis) OR we could try different models.
         I chose the last option because I am interested in seeing the performance of a simple feedforward neural network model on this dataset.
         </p>
+        <br>
+        <p><b>Here is the basic setup of the neural network that worked best:</b></p>
+        <table>
+          <tr>
+            <th>Number of nodes</th>
+            <td>X</td>
+          </tr>
+          <tr>
+            <th>Number of layers</th>
+            <td>X</td>
+          </tr>
+          <tr>
+            <th>Learning rate</th>
+            <td>X</td>
+          </tr>
+          <tr>
+            <th>Number of epochs</th>
+            <td>X</td>
+          </tr>
+          <tr>
+            <th>Regularization</th>
+            <td>L2</td>
+          </tr>
+          <tr>
+            <th>Optimization algorithm</th>
+            <td>Gradient Descent<br>(tensorflow)</td>
+          </tr>
+        </table>
+        <br>
+        <p>
+
+
 
         <p>
-        After training a neural network for just 2 epochs, we see a test set accuracy of X! Quite impressive!
-        To see the code and details of my network implementation, go toward the end of my
-        <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%203%20-%20Data%20Modeling%5D.ipynb">Modeling notebook</a> (which can also be found in this project's github repo).
-        </p>
-
-        <p>
-        <b>In the end we were able to show that using a simple neural network, we can predict, with high accuracy,
+        <b>In the end, we were able to show that we can predict, with reasonably high accuracy,
           if a League of Legends player will get to level 3 (i.e. finish their tutorial matches) using only publically accesible
           game data from that player's first League of Legends match!</b>
         </p>
 
         <p>For detailed implementation of any part of this project, please see my Jupyter notebooks:
           <br>
+          <br>
+          <p><b>PART 1: </b></p>
           <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%201%20-%20Data%20Collection%5D.ipynb"><b>Data Collection</b></a>
           <br>
+          <br>
+          <p><b>PART 2: </b></p>
           <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%202%20-%20Data%20Cleaning%20and%20EDA%5D.ipynb"><b>Data Cleaning and EDA</b></a>
           <br>
+          <br>
+          <p><b>PART 3: </b></p>
           <a href="https://nbviewer.jupyter.org/github/dskarbrevik/League-of-Legends-Churn-Prediction/blob/master/LoL%20Churn%20Predictor%20%5BPart%203%20-%20Data%20Modeling%5D.ipynb"><b>Data Modeling</b></a>
           <br>
           <br>
