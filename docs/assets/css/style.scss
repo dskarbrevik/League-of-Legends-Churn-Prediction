@@ -45,6 +45,10 @@ $table-border-color: #252423 !default;
 //   margin: 0px auto;
 // }
 
+table{
+  width: 100%;
+}
+
 th, td{
   border: 5px solid;
 }
