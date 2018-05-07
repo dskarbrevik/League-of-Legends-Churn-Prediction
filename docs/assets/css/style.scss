@@ -45,8 +45,9 @@ $table-border-color: #252423 !default;
 //   margin: 0px auto;
 // }
 
-table, tr, th, td{
-  width: 100%;
+table.center{
+  margin-left: auto;
+  margin-right: auto;
 }
 
 th, td{
