@@ -51,6 +51,10 @@ table.center{
   margin-right: auto;
 }
 
+table.fixed{
+  table-layout: fixed;
+}
+
 th, td{
   border: 5px solid;
 }
